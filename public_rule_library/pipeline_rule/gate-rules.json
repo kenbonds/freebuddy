@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "rules": [
+    { "name": "TypeScript类型检查", "command": "npx tsc --noEmit", "required": true, "stage": "basic" },
+    { "name": "单元测试", "command": "npx vitest run", "required": true, "stage": "basic" },
+    { "name": "项目构建打包", "command": "npm run build", "required": true, "stage": "full" },
+    { "name": "Playwright E2E测试", "command": "npx playwright test", "required": false, "stage": "full" },
+    { "name": "安全漏洞扫描", "command": "npm audit --production", "required": false, "stage": "full" }
+  ],
+  "block_on_failure": true
+}
