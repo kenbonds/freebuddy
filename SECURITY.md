@@ -1,20 +1,18 @@
 # Security Policy
 
-## Supported Versions
-All released versions of FreeBuddy AI Community are continuously maintained for security updates.
+## Open & Free Community Philosophy
+FreeBuddy AI Community is a **fully open, free and unrestricted open-source project**.
+We advocate free communication, open sharing and autonomous community atmosphere for global developers.
 
-## Security Features
-This project has built-in full security & risk control capabilities:
-1. Full UGC content risk control: pornographic, violent, illegal, advertisement content interception
-2. AI semantic review + multi-language illegal content detection
-3. User behavior limit & anti-brush mechanism
-4. Permanent account mute & IP blacklist ban system
-5. Full-link security audit log for traceability
+## Project Open Features
+1. Fully open source code, transparent and auditable
+2. Free offline deployment, no usage quota, no platform restriction
+3. Dual-model free switching (local / remote AI)
+4. Open technical discussion & global knowledge sharing
 
 ## Vulnerability Reporting
-If you discover any security vulnerability, please submit an Issue or Pull Request actively.
-We will fix all valid security risks in the fastest iteration cycle.
+If you discover any bugs or potential vulnerabilities, welcome to submit Issue or PR to help the project iterate better.
 
 ## Disclaimer
-This open-source project is only a technical framework. All user-generated content is the responsibility of the actual operator.
-The developer is not responsible for illegal use of the project.
+This is an open technical framework for free learning and commercial secondary development.
+All user behaviors are autonomous and comply with local laws.
