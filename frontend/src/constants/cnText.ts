@@ -11,6 +11,10 @@ export const CN_TEXT = {
   modelConfig: "大模型配置",
   archiveManage: "归档封存",
   auditLog: "审计日志",
+  goalManage: "目标驱动",
+  knowledgeManage: "知识库",
+  chatMode: "对话模式",
+  engineeringMode: "工程模式",
   systemSettings: "系统设置",
 
   // 工单六态

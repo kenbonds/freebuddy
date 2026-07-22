@@ -16,15 +16,15 @@ export default function AgentCenter() {
 
   const loadModels = async () => {
     const res = await request.get<ApiRes<ModelConfItem[]>>("/model/list");
-    setModelList(res.data.data ?? []);
+    setModelList(res.data ?? []);
   };
 
   const loadTickets = async () => {
     const pRes = await request.get<ApiRes<{id:number}[]>>("/project/list");
     const allTickets: TicketItem[] = [];
-    for (const p of pRes.data.data ?? []) {
+    for (const p of pRes.data ?? []) {
       const tRes = await request.get<ApiRes<TicketItem[]>>(`/ticket/list/${p.id}`);
-      allTickets.push(...(tRes.data.data ?? []));
+      allTickets.push(...(tRes.data ?? []));
     }
     setTicketList(allTickets.filter(t => t.assignRole && !["归档封存"].includes(t.status)));
   };
@@ -44,10 +44,10 @@ export default function AgentCenter() {
       modelId: selectedModel,
       userInput: inputText
     });
-    if (res.data.code === 0) {
-      setOutputText(res.data.data ?? "");
+    if (res.code === 0) {
+      setOutputText(res.data ?? "");
     } else {
-      message.error(res.data.msg);
+      message.error(res.msg);
     }
   };
 

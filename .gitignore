@@ -38,3 +38,12 @@ Thumbs.db
 tmp
 temp
 .cache
+
+# 私有工作区数据
+private_workspace/
+
+# 截图
+_screenshots/
+
+# GitHub OG 预览图
+og-preview.png

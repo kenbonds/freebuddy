@@ -10,7 +10,11 @@ interface TicketAttributes {
   status: TicketStatus;
   assignRole: AgentRole | null;
   parentTicketId: number | null;
+  priority: string;
+  goalId: number | null;
+  timeline: string;
   finishedAt: Date | null;
+  deletedAt: Date | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -23,7 +27,11 @@ class Ticket extends Model<TicketAttributes> implements TicketAttributes {
   public status!: TicketStatus;
   public assignRole!: AgentRole | null;
   public parentTicketId!: number | null;
+  public priority!: string;
+  public goalId!: number | null;
+  public timeline!: string;
   public finishedAt!: Date | null;
+  public deletedAt!: Date | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -60,7 +68,23 @@ Ticket.init(
       type: DataTypes.INTEGER,
       allowNull: true
     },
+    priority: {
+      type: DataTypes.STRING,
+      defaultValue: "P3"
+    },
+    goalId: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    timeline: {
+      type: DataTypes.TEXT,
+      defaultValue: "[]"
+    },
     finishedAt: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    deletedAt: {
       type: DataTypes.DATE,
       allowNull: true
     }

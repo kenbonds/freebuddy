@@ -1,11 +1,10 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { runAgentTask, upsertAgentPrompt } from "../services/agentDispatchService";
-import type { ApiResult } from "../types";
 
 const router = Router();
 
 // 执行单条Agent任务调用
-router.post("/runTask", async (req: Request, res: Response<ApiResult<string>>) => {
+router.post("/runTask", async (req, res) => {
   try {
     const { ticketId, modelId, userInput } = req.body;
     const result = await runAgentTask(ticketId, modelId, userInput);
@@ -16,7 +15,7 @@ router.post("/runTask", async (req: Request, res: Response<ApiResult<string>>) =
 });
 
 // 更新角色提示词模板
-router.post("/updatePrompt", async (req: Request, res: Response<ApiResult<unknown>>) => {
+router.post("/updatePrompt", async (req, res) => {
   try {
     const { role, promptText, version } = req.body;
     const item = await upsertAgentPrompt(role, promptText, version);

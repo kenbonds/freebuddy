@@ -7,6 +7,9 @@ interface ProjectAttributes {
   description: string;
   archived: boolean;
   archivePath: string | null;
+  abnormal: boolean;
+  priority: string;
+  goalId: number | null;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -17,6 +20,9 @@ class Project extends Model<ProjectAttributes> implements ProjectAttributes {
   public description!: string;
   public archived!: boolean;
   public archivePath!: string | null;
+  public abnormal!: boolean;
+  public priority!: string;
+  public goalId!: number | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
@@ -42,6 +48,18 @@ Project.init(
     },
     archivePath: {
       type: DataTypes.STRING,
+      allowNull: true
+    },
+    abnormal: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    priority: {
+      type: DataTypes.STRING,
+      defaultValue: "P3"
+    },
+    goalId: {
+      type: DataTypes.INTEGER,
       allowNull: true
     }
   },

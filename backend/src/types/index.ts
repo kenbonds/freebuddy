@@ -1,6 +1,7 @@
 // ========== 工单六态枚举 纯中文状态 ==========
 export type TicketStatus =
   | "待认领"
+  | "待执行"
   | "处理中"
   | "待复核"
   | "测试驳回"
@@ -35,6 +36,7 @@ export interface TicketItem {
   status: TicketStatus;
   assignRole: AgentRole | null;
   parentTicketId: number | null;
+  priority: string;
   createdAt: Date;
   finishedAt: Date | null;
 }

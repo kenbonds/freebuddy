@@ -8,6 +8,7 @@ import { initDatabase } from "./db/init";
 import globalRouter from "./routes/index";
 import { createWsServer } from "./websocket/wsServer";
 import { writeAuditLog } from "./utils/auditLogger";
+import Role from "./db/models/Role";
 
 // 强制初始化固定目录结构
 const initFixedDirs = () => {
@@ -40,10 +41,13 @@ const bootstrap = async () => {
   const app: Express = express();
   const PORT = 3100;
 
-  // 中间件
+  // 全局中间件
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
+
+  // 插入默认角色数据（首次启动时）
+  await initRoles();
 
   // 路由挂载
   app.use("/api", globalRouter);
@@ -60,6 +64,19 @@ const bootstrap = async () => {
     console.log(`FreeBuddy Backend Running on http://127.0.0.1:${PORT}`);
   });
 };
+
+async function initRoles() {
+  const count = await Role.count();
+  if (count > 0) return;
+  const defaultRoles = [
+    { roleName: "架构规划员", permissions: JSON.stringify(["project_edit", "project_archive", "ticket_assign", "task_execute", "review", "qa_check", "log_view", "role_manage"]), description: "负责项目整体架构设计、模块拆分、技术选型" },
+    { roleName: "开发执行员", permissions: JSON.stringify(["task_execute", "ticket_assign", "log_view"]), description: "负责具体功能开发、代码编写、单元测试" },
+    { roleName: "运维部署员", permissions: JSON.stringify(["task_execute", "project_archive", "log_view"]), description: "负责环境配置、CI/CD、部署运维" },
+    { roleName: "质检审核员", permissions: JSON.stringify(["qa_check", "review", "log_view"]), description: "负责质量检测、合规审查、复核审批" },
+  ];
+  await Role.bulkCreate(defaultRoles);
+  writeAuditLog("已插入4个默认角色配置");
+}
 
 bootstrap().catch((err) => {
   writeAuditLog(`服务启动异常: ${String(err)}`);

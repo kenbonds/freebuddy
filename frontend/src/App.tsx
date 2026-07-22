@@ -11,7 +11,10 @@ import {
   CheckCircleOutlined,
   KeyOutlined,
   FileZipOutlined,
-  BookOutlined
+  BookOutlined,
+  AimOutlined,
+  MessageOutlined,
+  ApiOutlined
 } from "@ant-design/icons";
 import { CN_TEXT } from "./constants/cnText";
 
@@ -24,6 +27,10 @@ import PipelinePage from "./pages/PipelinePage";
 import ModelConfigPage from "./pages/ModelConfigPage";
 import ArchivePage from "./pages/ArchivePage";
 import AuditLogPage from "./pages/AuditLogPage";
+import GoalPage from "./pages/GoalPage";
+import KnowledgePage from "./pages/KnowledgePage";
+import ChatPage from "./pages/ChatPage";
+import EngineeringPage from "./pages/EngineeringPage";
 
 const { Header, Sider, Content } = Layout;
 
@@ -67,6 +74,26 @@ const menuItems: MenuProps["items"] = [
     key: "audit",
     icon: <BookOutlined />,
     label: CN_TEXT.auditLog
+  },
+  {
+    key: "goal",
+    icon: <AimOutlined />,
+    label: CN_TEXT.goalManage
+  },
+  {
+    key: "knowledge",
+    icon: <BookOutlined />,
+    label: CN_TEXT.knowledgeManage
+  },
+  {
+    key: "chat",
+    icon: <MessageOutlined />,
+    label: CN_TEXT.chatMode
+  },
+  {
+    key: "engineering",
+    icon: <ApiOutlined />,
+    label: CN_TEXT.engineeringMode
   }
 ];
 
@@ -78,7 +105,11 @@ const routeMap: Record<string, string> = {
   pipeline: "/pipeline",
   model: "/model",
   archive: "/archive",
-  audit: "/audit"
+  audit: "/audit",
+  goal: "/goal",
+  knowledge: "/knowledge",
+  chat: "/chat",
+  engineering: "/engineering"
 };
 
 function App() {
@@ -125,6 +156,10 @@ function App() {
             <Route path="/model" element={<ModelConfigPage />} />
             <Route path="/archive" element={<ArchivePage />} />
             <Route path="/audit" element={<AuditLogPage />} />
+            <Route path="/goal" element={<GoalPage />} />
+            <Route path="/knowledge" element={<KnowledgePage />} />
+            <Route path="/chat" element={<ChatPage />} />
+            <Route path="/engineering" element={<EngineeringPage />} />
             <Route path="*" element={<Dashboard />} />
           </Routes>
         </Content>
